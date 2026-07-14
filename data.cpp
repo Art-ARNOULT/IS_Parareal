@@ -31,7 +31,7 @@ void Parameter(int &N,
         EDP="Overdamped";
 
         N=200;
-        K=5;
+        K=0;
         T=1;
         I=1250;
 
