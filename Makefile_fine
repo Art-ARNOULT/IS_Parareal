@@ -1,0 +1,39 @@
+Compilateur = g++
+Options_compilation = -std=c++11 -Wall -isystem./Eigen -I DOS -Wno-int-in-bool-context
+Options_compilation_DEBUG = -std=c++11 -Wall -I./Eigen -D_GLIBCXX_DEBUG -I DOS  -Wno-int-in-bool-context
+
+Executable = exe_fine
+
+# Répertoires
+DOS = DOS
+
+# Fichiers sources
+Sources = main_fine_Hill.cpp Functions.cpp Hill.cpp Parareal.cpp Parareal_multiTS.cpp Physics.cpp data.cpp UsefuleFunctions.cpp
+
+Objets = $(addprefix $(DOS)/, $(Sources:.cpp=.o))
+
+all: $(Executable)
+	@if [ -x $(Executable) ]; then \
+		echo "Exécution de ./$(Executable)..."; \
+		./$(Executable) 17 ; \
+	fi
+
+$(Executable): $(Objets)
+	$(Compilateur) $(Options_compilation) -o $@ $^
+
+# Règle pour compiler les .cpp en .o dans DOS
+$(DOS)/%.o: %.cpp | $(DOS)
+	$(Compilateur) $(Options_compilation) -c $< -o $@
+
+
+clean:
+	rm -f $(DOS)/*.o $(Executable)
+
+run:
+	rm -f $(DOS)/*.o $(Executable)
+	makef;
+
+
+clear:
+	clear;
+	makef;
