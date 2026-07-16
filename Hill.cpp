@@ -33,16 +33,18 @@ void Hill(int N, int d, string MODEL, string EDP, string type, double dt, int I,
         Fichier_Hill.open("RES/HILL_"+type+ "_"+str(numero_fichier)+".txt");
         int IA=-1;
 
-        for (int j=0; j<10000*I; j++)
+        int j=0;
+        while (Pb<I)
         {
-            if(Pb==I) // si on fait I passages dans B, on s'arrete
-                break;
+            // if(Pb==I) // si on fait I passages dans B, on s'arrete
+            //     break;
 
             X0=Init_X0(MODEL,dist_I(rng),d, EDP);
 
             Sigma_atteint=0;
             Y_1_atteint=0;
             tau_1=0;
+
             double w_temp=1;
 
             while (Y_1_atteint==0)
@@ -105,9 +107,10 @@ void Hill(int N, int d, string MODEL, string EDP, string type, double dt, int I,
                     X0=X_n[N];
                 }
             }
+
+            j++;
         } // end loop on I
 
         Fichier_Hill.close();
-
 
     }

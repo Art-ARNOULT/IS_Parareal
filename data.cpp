@@ -33,7 +33,7 @@ void Parameter(int &N,
         N=200;
         K=10;
         T=1;
-        I=1250;
+        I=11;
 
         int Nb_atoms=1;
         X0.resize(Nb_atoms);
